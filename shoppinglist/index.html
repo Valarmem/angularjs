@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping List</title>
+    <title>购物车</title>
     <script src="angular.min.js"></script>
 </head>
 <body>
@@ -10,13 +10,18 @@
   <ul>
     <li ng-repeat="product in products">{{product}}</li>
   </ul>
+  <input type="text" ng-model="addMe">
+  <button ng-click="addItem()">添加</button>
 </div>
-<p>So far we have an HTML list based on the items of an array.</p>
+<p>Write in the input field to add items.</p>
 <script>
 var app = angular.module('ShoppingList',[]);
 app.controller('myCtrl', ['$scope', function($scope){
     $scope.products = ["Milk","Bread","Cheese"];
-}])
+    $scope.addItem = function () {
+        $scope.products.push($scope.addMe);
+    }
+}]);
 </script>
 </body>
 </html>
